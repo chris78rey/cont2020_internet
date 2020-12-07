@@ -1,0 +1,71 @@
+quantitative trading
+
+MODELOS ARCH
+
+https://www.google.com/search?newwindow=1&rlz=1C1GCEU_esEC824EC835&sxsrf=ACYBGNRT0QfQuVdWcHfPJ28ie526ZXHTZA:1576581825852&q=quantitative+trading&sa=X&ved=2ahUKEwjHusH9yLzmAhVjrlkKHX1YBXQQ7xYoAHoECGcQKQ&biw=1600&bih=757
+
+
+1-----
+1-----https://www.quantstart.com/articles/beginners-guide-to-quantitative-trading/
+1-----
+1-----Social Science Research Network - www.ssrn.com
+1-----arXiv Quantitative Finance - arxiv.org/archive/q-fin
+1-----Seeking Alpha - www.seekingalpha.com
+1-----Elite Trader - www.elitetrader.com
+1-----Nuclear Phynance - www.nuclearphynance.com
+1-----Quantivity - quantivity.wordpress.com
+
+
+
+
+
+https://www.quantstart.com/articles/Self-Study-Plan-for-Becoming-a-Quantitative-Trader-Part-I/
+libro---------------------------------------->
+libro---------------------------------------->https://otexts.com/fpp2/
+libro---------------------------------------->https://robjhyndman.com/uwafiles/fpp-notes.pdf
+
+
+alpha-------------------->
+alpha-------------------->
+alpha-------------------->youtube.com/watch?v=vhhnuO1t8vI
+alpha-------------------->
+alpha-------------------->
+alpha-------------------->
+
+
+http://www.nuclearphynance.com/
+
+
+
+
+
+time series
+
+youtube-------------->
+youtube-------------->
+youtube-------------->ANÁLISIS DE SERIES TEMPORALES
+youtube-------------->FRANCISCO DELCAMPO BERNAD
+youtube-------------->https://www.youtube.com/watch?v=eBJDqp8RmfA
+youtube-------------->
+youtube-------------->
+
+
+
+
+umh1263 2012-13 Lec013 Prácticas Series Temporales
+https://www.youtube.com/watch?v=XXu2Mbg5-Lg
+umh1263 2012-13 Lec013 Prácticas Series Temporales
+
+tendencia
+estacionalidad
+ciclicidad
+irregular
+
+
+
+
+
+SERIES DE TIEMPO DESCOMPOSICION
+http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf
+http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf
+

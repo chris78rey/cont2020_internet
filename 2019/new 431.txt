@@ -1,0 +1,111 @@
+SELECT VALUE
+  FROM nls_database_parameters
+ WHERE parameter = 'NLS_CHARACTERSET';
+
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado----CREATE DATABASE LINK HP
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado---- CONNECT TO CAJAS
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado---- IDENTIFIED BY CAJAS
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado---- USING 'hp';
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado----
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado----CREATE PUBLIC DATABASE LINK HP
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado---- CONNECT TO CAJAS
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado---- IDENTIFIED BY CAJAS
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado---- USING 'hp';
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado----
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado----
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado----EXEC DBMS_UTILITY.COMPILE_SCHEMA( schema => 'SIS');
+Esto se debe revisar para verificar que se migro softcase en muchos sps se lo tine quemado----SELECT * FROM ISSFA@HP
+
+
+
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->    
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->create or replace view FRM50_ENABLED_ROLES as
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->select urp.granted_role role,
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->sum(distinct decode(rrp.granted_role,
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO---------------> 'ORAFORMS$OSC',2,
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO---------------> 'ORAFORMS$BGM',4,
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO---------------> 'ORAFORMS$DBG',1,0)) flag
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->from sys.user_role_privs urp, role_role_privs rrp
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->where urp.granted_role = rrp.role (+)
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO---------------> and urp.granted_role not like 'ORAFORMS$%'
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->group by urp.granted_role;
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO---------------> 
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->create public synonym FRM50_ENABLED_ROLES for system.FRM50_ENABLED_ROLES;
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO---------------> 
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->create role ORAFORMS$OSC;
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->create role ORAFORMS$DBG;
+OJO IMPORTANTE SE DEBE CREAR LA VISTA Y EL SININIMO--------------->create role ORAFORMS$BGM;
+
+
+
+ejemplo------------C:\logs\putty.exe -ssh oracle@172.16.60.21 22 -pw oracle -X
+ejemplo------------expdp EXP_BDD/oracle SCHEMAS='SIS' directory=EXPORTACIONES dumpfile=SIS20170505.dmp EXCLUDE=TABLE:\"LIKE \'%_JN\'\",TABLE:\"LIKE \'%REGISTRO_ARCHIVOS_DTL_ISSF%\'\"  logfile=SIS_$(date +"%b_%d_%Y_%H%M%S").log
+ejemplo------------
+ejemplo------------
+ejemplo------------C:\logs\putty.exe -ssh oracle@172.16.60.28 22 -pw oracle -X
+ejemplo------------
+ejemplo------------scp oracle@172.16.60.21:/FSFRA/BACKUPS/SIS20170505.dmp /u01/app/oracle/respaldos
+ejemplo------------
+ejemplo------------impdp exp_bdd/oracle DUMPFILE="SIS20170505.dmp" LOGFILE="SIS20170505.log" DIRECTORY=EXP_BDD TABLE_EXISTS_ACTION=REPLACE CONTENT=ALL SCHEMAS='SIS';
+
+
+
+
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->WHENEVER SQLERROR EXIT FAILURE ROLLBACK;
+VISTAS MATERIALIZADAS----------------------------->SET SERVEROUTPUT ON
+VISTAS MATERIALIZADAS----------------------------->SET LINESIZE 1000
+VISTAS MATERIALIZADAS----------------------------->SET PAGESIZE 1000
+VISTAS MATERIALIZADAS----------------------------->SET ECHO OFF
+VISTAS MATERIALIZADAS----------------------------->SET HEADING ON
+VISTAS MATERIALIZADAS----------------------------->SET FEEDBACK OFF
+VISTAS MATERIALIZADAS----------------------------->SET TIMING OFF
+VISTAS MATERIALIZADAS----------------------------->SET VERIFY OFF
+VISTAS MATERIALIZADAS----------------------------->SET DEFINE ~
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->COLUMN fecha FORMAT a20 NEW_VALUE fec NOPRINT
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->SELECT TO_CHAR (SYSDATE, 'yyyy-mm-dd-hh24-mi-ss') fecha FROM DUAL;
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->SPOOL  C:\logs\lista_revision_mv_~~fec..txt
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->  SELECT owner, mview_name, last_refresh_date
+VISTAS MATERIALIZADAS----------------------------->    FROM dba_mviews
+VISTAS MATERIALIZADAS----------------------------->ORDER BY TO_CHAR (last_refresh_date, 'yyyymmddhh24miss') DESC;
+VISTAS MATERIALIZADAS----------------------------->
+VISTAS MATERIALIZADAS----------------------------->SPOOL OFF;
+
+
+
+
+
+C:\ocli\instantclient_12_2\bin\exp.exe CHRISTIAN_RUIZ/1234@RAC_NODO2 FILE=C:\EXP\exp_CRRB.dmp log=C:\EXP\exp_CRRB.log OWNER=('CHRISTIAN_RUIZ')  compress=N rows=Y grants=Y buffer=500000  statistics=NONE
+
+
+
+
+
+  SELECT OBJECT_NAME,
+         OBJECT_TYPE,
+         OBJECT_OWNER,
+         CREATION_TIME,
+         STATUS,
+         SOURCE,
+         ERRORS,
+         AUTHOR,
+         VERSION_LABEL,
+         SEQ,
+         BRANCH,
+         SOURCE_SIZE,
+         PRIORITY,
+         COMMENTS,
+         LABEL
+    FROM plsql_archive
+   WHERE     OBJECT_OWNER = 'SIS'
+         AND CREATION_TIME >=
+                TO_DATE ('05/03/2018 07:00:00', 'MM/DD/YYYY HH24:MI:SS')
+ORDER BY CREATION_TIME DESC;
